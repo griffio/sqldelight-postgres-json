@@ -1,0 +1,34 @@
+# SqlDelight 2.1.x Postgresql Json support 
+
+https://github.com/cashapp/sqldelight
+
+Support JSON and JSONB column types and operations
+
+String is the input and output type for the table API for JSON/JSONB columns
+
+```sql
+CREATE TABLE Recipes (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  recipe JSONB NOT NULL,
+  createdAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updatedAt TIMESTAMPTZ
+);
+```
+
+*Not supported*
+* Json column type support
+  * MERGED https://github.com/cashapp/sqldelight/issues/5028
+* Json Operators
+  * AWAIT MERGE https://github.com/cashapp/sqldelight/issues/5040
+* Json GIN indexes
+  * AWAIT MERGE https://github.com/cashapp/sqldelight/issues/5026
+
+----
+
+```shell
+./gradlew build
+./gradlew flywayMigrate
+```
+
+Flyway db migrations
+https://documentation.red-gate.com/fd/gradle-task-184127407.html

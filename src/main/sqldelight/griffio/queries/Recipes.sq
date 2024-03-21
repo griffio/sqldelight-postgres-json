@@ -1,0 +1,7 @@
+get:
+SELECT *
+FROM Recipes
+WHERE id = ?;
+
+add:
+INSERT INTO Recipes(recipe) VALUES (?) RETURNING *;
