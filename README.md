@@ -2,6 +2,8 @@
 
 https://github.com/cashapp/sqldelight
 
+Snapshot version: 2.1.0-SNAPSHOT
+
 Support JSON and JSONB column types and operations
 
 String is the input and output type for the table API for JSON/JSONB columns

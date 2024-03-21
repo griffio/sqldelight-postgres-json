@@ -17,10 +17,10 @@ fun main() {
     val driver = getSqlDriver()
     val sample = Sample(driver)
     // return JSONB column as String
-    sample.recipesQueries.get(1).executeAsOne().also(::println)
+    sample.recipeQueries.get(1).executeAsOne().also(::println)
     // insert JSONB column as String
 
-    sample.recipesQueries.add("""
+    sample.recipeQueries.add("""
         {
           "recipe_name": "Give a slice of Pizza",
           "ingredients": [
