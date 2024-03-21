@@ -8,7 +8,7 @@ import org.postgresql.ds.PGSimpleDataSource
 
 private fun getSqlDriver(): SqlDriver {
     val datasource = PGSimpleDataSource()
-    datasource.setURL("jdbc:postgresql://localhost:5432/postgres")
+    datasource.setURL("jdbc:postgresql://localhost:5432/recipes")
     datasource.applicationName = "App Main"
     return datasource.asJdbcDriver()
 }

@@ -45,7 +45,7 @@ tasks {
 }
 
 flyway {
-    url = "jdbc:postgresql://localhost:5432/postgres"
+    url = "jdbc:postgresql://localhost:5432/recipes"
     user = "postgres"
     password = ""
     locations = arrayOf("filesystem:$buildDir/generated/migrations")

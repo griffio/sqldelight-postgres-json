@@ -28,6 +28,7 @@ CREATE TABLE Recipes (
 ----
 
 ```shell
+createdb recipes
 ./gradlew build
 ./gradlew flywayMigrate
 ```
