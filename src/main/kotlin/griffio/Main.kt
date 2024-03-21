@@ -1,17 +1,14 @@
 package griffio
 
-import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.asJdbcDriver
 import griffio.queries.Sample
 
 import org.postgresql.ds.PGSimpleDataSource
 
-private fun getSqlDriver(): SqlDriver {
-    val datasource = PGSimpleDataSource()
-    datasource.setURL("jdbc:postgresql://localhost:5432/recipes")
-    datasource.applicationName = "App Main"
-    return datasource.asJdbcDriver()
-}
+private fun getSqlDriver() = PGSimpleDataSource().apply {
+    setURL("jdbc:postgresql://localhost:5432/recipes")
+    applicationName = "App Main"
+}.asJdbcDriver()
 
 fun main() {
     val driver = getSqlDriver()
@@ -20,7 +17,8 @@ fun main() {
     sample.recipeQueries.get(1).executeAsOne().also(::println)
     // insert JSONB column as String
 
-    sample.recipeQueries.add("""
+    sample.recipeQueries.add(
+        """
         {
           "recipe_name": "Give a slice of Pizza",
           "ingredients": [
@@ -41,5 +39,6 @@ fun main() {
             }
           ]
         }
-    """.trimIndent()).executeAsOne().also(::println)
+    """.trimIndent()
+    ).executeAsOne().also(::println)
 }
