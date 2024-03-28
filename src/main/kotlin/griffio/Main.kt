@@ -13,9 +13,6 @@ private fun getSqlDriver() = PGSimpleDataSource().apply {
 fun main() {
     val driver = getSqlDriver()
     val sample = Sample(driver)
-    // return JSONB column as String
-    sample.recipeQueries.get(1).executeAsOne().also(::println)
-    // insert JSONB column as String
 
     sample.recipeQueries.add(
         """
@@ -41,4 +38,8 @@ fun main() {
         }
     """.trimIndent()
     ).executeAsOne().also(::println)
+
+    sample.recipeQueries.update(
+        """'{"steps", 5}'""",
+        """'{"step": "Serve into dishes and pour over with single cream"}'""", 1)
 }

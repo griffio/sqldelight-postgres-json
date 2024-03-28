@@ -3,5 +3,23 @@ SELECT *
 FROM Recipes
 WHERE id = ?;
 
+-- getRecipe:
+-- SELECT *
+-- FROM Recipes
+-- WHERE recipe @> ?;
+
 add:
 INSERT INTO Recipes(recipe) VALUES (?) RETURNING *;
+
+update:
+UPDATE Recipes
+SET recipe = jsonb_insert(recipe, :path, :newValue)
+WHERE id = :id RETURNING recipe;
+
+pretty:
+SELECT jsonb_pretty(recipe)
+FROM Recipes
+WHERE id = ?;
+
+prettyV:
+SELECT to_jsonb(?);

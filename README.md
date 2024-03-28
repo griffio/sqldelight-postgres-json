@@ -18,6 +18,8 @@ CREATE TABLE Recipes (
 ```
 
 *Not supported*
+* Json Operators bind
+  * e.g `SELECT * FROM Recipes WHERE recipe @> ?` 
 * Json column type support
   * MERGED https://github.com/cashapp/sqldelight/issues/5028
 * Json Operators
