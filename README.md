@@ -21,9 +21,9 @@ CREATE TABLE Recipes (
 * Json column type support
   * MERGED https://github.com/cashapp/sqldelight/issues/5028
 * Json Operators
-  * AWAIT MERGE https://github.com/cashapp/sqldelight/issues/5040
+  * MERGED https://github.com/cashapp/sqldelight/issues/5040
 * Json GIN indexes
-  * AWAIT MERGE https://github.com/cashapp/sqldelight/issues/5026
+  * MERGED https://github.com/cashapp/sqldelight/issues/5026
 
 ----
 
