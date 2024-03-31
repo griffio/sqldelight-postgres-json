@@ -1,8 +1,7 @@
 pluginManagement {
     repositories {
-        mavenLocal()
-        gradlePluginPortal()
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
+        gradlePluginPortal()
         mavenCentral()
     }
 }

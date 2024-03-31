@@ -3,10 +3,10 @@ SELECT *
 FROM Recipes
 WHERE id = ?;
 
--- getRecipe:
--- SELECT *
--- FROM Recipes
--- WHERE recipe @> ?;
+getRecipe:
+SELECT *
+FROM Recipes
+WHERE recipe @> ?;
 
 add:
 INSERT INTO Recipes(recipe) VALUES (?) RETURNING *;
@@ -23,3 +23,10 @@ WHERE id = ?;
 
 prettyV:
 SELECT to_jsonb(?);
+
+remove:
+UPDATE Recipes SET recipe = recipe #- ? WHERE id = ?;
+
+contains:
+SELECT *
+FROM Recipes WHERE recipe ?? ?; -- ? operator is escaped with extra ? in jdbc

@@ -14,7 +14,9 @@ fun main() {
     val driver = getSqlDriver()
     val sample = Sample(driver)
 
-    sample.recipeQueries.add(
+    sample.recipeQueries.getRecipe("""{"recipe_name": "Basic Fruit Salad"}""").executeAsOne().also(::println)
+
+    val pizza = sample.recipeQueries.add(
         """
         {
           "recipe_name": "Give a slice of Pizza",
@@ -40,6 +42,15 @@ fun main() {
     ).executeAsOne().also(::println)
 
     sample.recipeQueries.update(
-        """'{"steps", 5}'""",
-        """'{"step": "Serve into dishes and pour over with single cream"}'""", 1)
+        """{"steps", 1}""",
+        """{"step": "Serve into dishes and pour over with single cream"}""", pizza.id).executeAsOne()
+
+    sample.recipeQueries.get(pizza.id).executeAsOne().also(::println)
+
+    sample.recipeQueries.remove("{steps, -1}", pizza.id)
+
+    sample.recipeQueries.get(pizza.id).executeAsOne().also(::println)
+
+    sample.recipeQueries.contains("ingredients").executeAsList().also(::println)
+
 }
