@@ -1,6 +1,5 @@
 pluginManagement {
     repositories {
-        maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
         gradlePluginPortal()
         mavenCentral()
     }
@@ -15,7 +14,7 @@ rootProject.name = "sqldelight-postgres-json"
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            val vSqlDelight = "2.1.0-SNAPSHOT"
+            val vSqlDelight = "2.1.0"
             plugin("kotlin", "org.jetbrains.kotlin.jvm").version("2.0.20")
             plugin("sqldelight", "app.cash.sqldelight").version(vSqlDelight)
             plugin("flyway", "org.flywaydb.flyway").version("10.1.0")

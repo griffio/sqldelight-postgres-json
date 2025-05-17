@@ -2,7 +2,7 @@
 
 https://github.com/cashapp/sqldelight
 
-Snapshot version: 2.1.0-SNAPSHOT
+Version: 2.1.0
 
 Support JSON and JSONB column types and operations
 
@@ -27,6 +27,8 @@ CREATE TABLE Recipes (
   * MERGED https://github.com/cashapp/sqldelight/issues/5040
 * Json GIN indexes
   * MERGED https://github.com/cashapp/sqldelight/issues/5026
+* Functions for creating Json and Jsonb values
+  * MERGED https://github.com/sqldelight/sqldelight/pull/5606
 
 ----
 
