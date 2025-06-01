@@ -1,0 +1,33 @@
+-- Index specific JSON paths for range queries
+-- Index for recipe name searches and sorting
+CREATE INDEX idx_recipe_name ON Recipes USING BTREE ((recipe #>> '{recipe_name}'));
+
+-- Index for servings count (from yields array)
+CREATE INDEX idx_recipe_servings ON Recipes USING BTREE ((recipe #> '{yields,0,servings}'));
+
+-- Index for ingredient count (useful for complexity queries)
+CREATE INDEX idx_ingredient_count ON Recipes USING BTREE (jsonb_array_length(recipe #> '{ingredients}'));
+
+-- Index for step count (recipe complexity)
+CREATE INDEX idx_steps_count ON Recipes USING BTREE (jsonb_array_length(recipe #> '{steps}'));
+
+-- Hash index for exact recipe name lookups
+CREATE INDEX idx_recipe_name_hash ON Recipes USING HASH ((recipe #>> '{recipe_name}'));
+
+-- Hash index for exact serving size lookups
+CREATE INDEX idx_servings_hash ON Recipes USING HASH ((recipe #> '{yields,0,servings}'));
+
+-- Full-text search on recipe names
+CREATE INDEX idx_recipe_name_fts ON Recipes
+USING GIN (to_tsvector('english', recipe #>> '{recipe_name}'));
+
+-- Full-text search on cooking steps
+CREATE INDEX idx_recipe_steps_fts ON Recipes
+USING GIN (to_tsvector('english', recipe #>> '{steps}'));
+
+-- Combined full-text search on recipe name and steps
+CREATE INDEX idx_recipe_content_fts ON Recipes
+USING GIN (to_tsvector('english',
+  COALESCE(recipe #>> '{recipe_name}', '') || ' ' ||
+  COALESCE(recipe #>> '{steps}', '')
+));
