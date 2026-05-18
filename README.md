@@ -1,8 +1,8 @@
-# SqlDelight 2.1.x Postgresql Json support 
+# SqlDelight 2.3.x Postgresql Json support 
 
 https://github.com/cashapp/sqldelight
 
-Version: 2.1.0
+Version: 2.3.x
 
 Support JSON and JSONB column types and operations
 
